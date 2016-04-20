@@ -33,6 +33,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
     docker run --name gitlab-ce-pages -d --restart=always \
         --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' \
         --env 'GITLAB_URL=http://gitlab.example.com/' \
+        --env 'PROJECT_ROOT=public' \
         --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
         --p 8000:80 \
         yums/gitlab-ce-pages
@@ -48,6 +49,8 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
 * **GITLAB_URL**: GitLab CE URL
 * **RELATIVE_URL**: relative url of **GCP**, with this you can deploy **GCP** under existing domains with some proxy forwarding.
 This variable should looks like `pages`, without prefix or trailing splashes.
+* **PROJECT_ROOT**: root directory in architect file. If set, files inside of **PROJECT_ROOT** directory will be taken out.
+This variable should looks like `public`, without prefix or trailing splashes.
 
 
 ## Sample `docker-compose.yml`
@@ -60,6 +63,7 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
       environment:
         - PAGE_PRIVATE_TOKEN=private_token_of_peeking_account
         - GITLAB_URL=http://gitlab.example.com/
+        - PROJECT_ROOT=public
       volumes:
         - ./public:/home/pages/public
       ports:
