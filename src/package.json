@@ -1,0 +1,19 @@
+{
+  "name": "gitlab-ce-pages",
+  "version": "1.0.0",
+  "description": "Unofficial GitLab pages for GitLab CE",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mkdirp": "^0.5.1",
+    "request": "^2.72.0",
+    "rimraf": "^2.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "yumaoshu@gmail.com",
+  "license": "MIT"
+}
