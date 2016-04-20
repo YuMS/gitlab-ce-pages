@@ -9,6 +9,7 @@ const exec = require('child_process').exec;
 
 const publicDir = process.env.GITLAB_CE_PAGES_PUBLIC_DIR;
 const privateToken = process.env.PAGE_PRIVATE_TOKEN;
+const projectRoot = process.env.PROJECT_ROOT;
 
 let gitlabUrl = process.env.GITLAB_URL || 'localhost';
 gitlabUrl = gitlabUrl.replace(/\/*$/, '/');
@@ -20,6 +21,19 @@ function extract(artifactName, artifactPath, destination) {
       console.error(err);
     } else {
       console.log('unzipped', artifactName, 'into', destination);
+      if (projectRoot) {
+        console.log('moving files out of', projectRoot);
+        exec('cd ' + destination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
+          (err, stdout, stderr) => {
+            if (err) {
+              console.error('moving', projectRoot, 'failed');
+              console.error(err);
+            } else {
+              console.log('moving', projectRoot, 'succeed');
+            }
+          }
+        );
+      }
     }
   });
 }
