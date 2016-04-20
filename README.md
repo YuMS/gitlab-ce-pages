@@ -33,8 +33,8 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
     docker run --name gitlab-ce-pages -d --restart=always \
         --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' \
         --env 'GITLAB_URL=http://gitlab.example.com/' \
-        --volume './public:/home/pages/public/' \
-        --publish='8000:80' \
+        --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
+        --p 8000:80 \
         yums/gitlab-ce-pages
   ```
 * For repository owners:
