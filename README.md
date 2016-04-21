@@ -2,7 +2,7 @@
 
 This is an unofficial GitLab pages implementation for **GitLab CE**. It will be denoted as **GCP**.
 
-Official **GitLab Pages**(denoted as **GP**) is an not provided for for GitLab CE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and 
+Official **GitLab Pages** is an not provided for for GitLab CE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and 
 [here](https://news.ycombinator.com/item?id=10923747). *Luckily*, I found [this project](https://github.com/Glavin001/GitLab-Pages) before
 my finishing the initial version of this project. So this is it.
 
