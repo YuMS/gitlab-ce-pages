@@ -39,7 +39,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
         yums/gitlab-ce-pages
   ```
 * For repository owners:
-  * Add **page** account into your repository members and grant **guest** privilege
+  * Add **page** account into your repository members and grant **Reporter** privilege
   * Add **Webhook** in **Project Settings** -> **Webhooks**, tick only **Build event** and fill in **URL** provided by administrator.
   * Write `.gitlab-ci.yml` like demonstrated in [these examples](https://gitlab.com/groups/pages)
   * Wait for building and check your page under `{GITLAB_CE_PAGE_URL}/{WORKSPACE}/{PROJECT_NAME}`
