@@ -24,7 +24,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
 * For GitLab CE administrator:
   * Create an account (I'll name it **page**) for **GCP**. This has to be done to retrieve artifects in private repositories.
   * Go to **Profile Settings** -> **Account** and copy **Private Token**.
-  * get Docker image
+  * Get Docker image
   ```
     docker pull yums/gitlab-ce-pages
   ```
@@ -38,6 +38,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
         --p 8000:80 \
         yums/gitlab-ce-pages
   ```
+  * Provide your server's root URL to repository owners as **webhook URL**.
 * For repository owners:
   * Add **page** account into your repository members and grant **Reporter** privilege
   * Add **Webhook** in **Project Settings** -> **Webhooks**, tick only **Build event** and fill in **URL** provided by administrator.
