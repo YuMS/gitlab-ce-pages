@@ -76,8 +76,9 @@ function update(body, pageDir) {
 
 module.exports = {
   deploy: function(body) {
-    const pname = body.project_name.replace('.', '');
-    const pnameSplit = pname.split(' / ');
+    const homepage = body.repository.homepage;
+    const homepageSplit = homepage.split('/');
+    const pnameSplit = homepageSplit.splice(homepageSplit.length - 2, 2);
     const pageDir = path.join(publicDir, ...pnameSplit);
     fs.stat(pageDir, (err, stats) => {
       if (err) {
