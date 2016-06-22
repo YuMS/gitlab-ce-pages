@@ -48,10 +48,8 @@ function update(body, pageDir) {
       console.log('mkdir', pageDir, 'failed');
       return;
     }
-    const pname = body.project_name.replace('.', '');
     const pid = body.project_id;
     const bid = body.build_id;
-    const pnameSplit = pname.split(' / ');
     const options = {
       url: url.resolve(gitlabUrl, 'api/v3/projects/' + pid + '/builds/' + bid + '/artifacts'),
       headers: {
