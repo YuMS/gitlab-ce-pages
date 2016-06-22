@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ce-pages",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Unofficial GitLab pages for GitLab CE",
   "main": "index.js",
   "dependencies": {
