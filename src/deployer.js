@@ -21,6 +21,17 @@ function extract(artifactName, artifactPath, destination) {
       console.error(err);
     } else {
       console.log('unzipped', artifactName, 'into', destination);
+      console.log('removing artifact', artifactPath);
+      exec('rm ' + artifactPath,
+        (err, stdout, stderr) => {
+          if (err) {
+            console.error('removing artifact', artifactPath, 'failed');
+            console.error(err);
+          } else {
+            console.log('removing artifact', artifactPath, 'succeed');
+          }
+        }
+      );
       if (projectRoot) {
         console.log('moving files out of', projectRoot);
         exec('cd ' + destination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
