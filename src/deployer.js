@@ -26,10 +26,10 @@ function extract(artifactName, artifactPath, destination) {
         exec('cd ' + destination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
           (err, stdout, stderr) => {
             if (err) {
-              console.error('moving', projectRoot, 'failed');
+              console.error('moving files out of', projectRoot, 'failed');
               console.error(err);
             } else {
-              console.log('moving', projectRoot, 'succeed');
+              console.log('moving files out of', projectRoot, 'succeed');
             }
           }
         );
