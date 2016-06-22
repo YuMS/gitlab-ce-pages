@@ -17,7 +17,7 @@ gitlabUrl = gitlabUrl.replace(/\/*$/, '/');
 function extract(artifactName, artifactPath, destination) {
   exec('unzip ' + artifactPath + ' -d ' + destination, (err, stdout, stderr) => {
     if (err) {
-      console.error('unzipp', artifactName, 'failed');
+      console.error('unzip', artifactName, 'failed');
       console.error(err);
     } else {
       console.log('unzipped', artifactName, 'into', destination);
