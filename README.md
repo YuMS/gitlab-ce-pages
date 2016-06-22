@@ -2,7 +2,7 @@
 
 This is an unofficial GitLab pages implementation for **GitLab CE**. It will be denoted as **GCP**.
 
-Official **GitLab Pages**(denoted as **GP**) is an not provided for for GitLab CE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and 
+Official **GitLab Pages** is an not provided for for GitLab CE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and 
 [here](https://news.ycombinator.com/item?id=10923747). *Luckily*, I found [this project](https://github.com/Glavin001/GitLab-Pages) before
 my finishing the initial version of this project. So this is it.
 
@@ -24,7 +24,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
 * For GitLab CE administrator:
   * Create an account (I'll name it **page**) for **GCP**. This has to be done to retrieve artifects in private repositories.
   * Go to **Profile Settings** -> **Account** and copy **Private Token**.
-  * get Docker image
+  * Get Docker image
   ```
     docker pull yums/gitlab-ce-pages
   ```
@@ -38,8 +38,9 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
         --p 8000:80 \
         yums/gitlab-ce-pages
   ```
+  * Provide your server's root URL to repository owners as **webhook URL**.
 * For repository owners:
-  * Add **page** account into your repository members and grant **guest** privilege
+  * Add **page** account into your repository members and grant **Reporter** privilege
   * Add **Webhook** in **Project Settings** -> **Webhooks**, tick only **Build event** and fill in **URL** provided by administrator.
   * Write `.gitlab-ci.yml` like demonstrated in [these examples](https://gitlab.com/groups/pages)
   * Wait for building and check your page under `{GITLAB_CE_PAGE_URL}/{WORKSPACE}/{PROJECT_NAME}`
