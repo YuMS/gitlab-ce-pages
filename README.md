@@ -26,7 +26,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
   * Go to **Profile Settings** -> **Account** and copy **Private Token**.
   * Get Docker image
   ```
-    docker pull yums/gitlab-ce-pages
+    docker pull yums/gitlab-ce-pages:1.0.2
   ```
   * Run Docker container with
   ```
@@ -36,7 +36,7 @@ you can take this chance to install it, here's the [doc](http://doc.gitlab.com/c
         --env 'PROJECT_ROOT=public' \
         --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
         --p 8000:80 \
-        yums/gitlab-ce-pages
+        yums/gitlab-ce-pages:1.0.2
   ```
   * Provide your server's root URL to repository owners as **webhook URL**.
 * For repository owners:
@@ -60,7 +60,7 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
     
     gitlab-ce-pages:
       restart: always
-      image: yums/gitlab-ce-pages
+      image: yums/gitlab-ce-pages:1.0.2
       environment:
         - PAGE_PRIVATE_TOKEN=private_token_of_peeking_account
         - GITLAB_URL=http://gitlab.example.com/
