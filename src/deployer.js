@@ -22,13 +22,14 @@ function extract(artifactName, artifactPath, destination) {
     } else {
       console.log('unzipped', artifactName, 'into', destination);
       console.log('removing artifact', artifactPath);
+      // Artifact is expected to run parallel with moving files down below
       exec('rm ' + artifactPath,
         (err, stdout, stderr) => {
           if (err) {
-            console.error('removing artifact', artifactPath, 'failed');
+            console.error('artifact removal', artifactPath, 'failed');
             console.error(err);
           } else {
-            console.log('removing artifact', artifactPath, 'succeed');
+            console.log('artifact removal', artifactPath, 'succeed');
           }
         }
       );
@@ -37,10 +38,10 @@ function extract(artifactName, artifactPath, destination) {
         exec('cd ' + destination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
           (err, stdout, stderr) => {
             if (err) {
-              console.error('moving files out of', projectRoot, 'failed');
+              console.error('files moving out of', projectRoot, 'failed');
               console.error(err);
             } else {
-              console.log('moving files out of', projectRoot, 'succeed');
+              console.log('files moving out of', projectRoot, 'succeed');
             }
           }
         );
