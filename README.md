@@ -44,7 +44,7 @@ The only ~~supported~~ encouraged way to use **GCP** is on [Docker](https://www.
 ## Environment variables
 * **PAGE_PRIVATE_TOKEN**: private token of peeking account
 * **GITLAB_URL**: GitLab CE URL
-* **RELATIVE_URL**: relative url of **GCP**, with this you can deploy **GCP** under existing domains with some proxy forwarding.
+* **RELATIVE_URL**: relative URL of **GCP**, with this you can deploy **GCP** under existing domains with some proxy forwarding.
 This variable should looks like `pages`, without prefix or trailing splashes.
 * **PROJECT_ROOT**: root directory in artifacts file. If set, files inside of **PROJECT_ROOT** directory will be taken out.
 This variable should looks like `public`, without prefix or trailing splashes.
