@@ -30,7 +30,7 @@ The only ~~supported~~ encouraged way to use **GCP** is on [Docker](https://www.
         --env 'GITLAB_URL=http://gitlab.example.com/' \
         --env 'PROJECT_ROOT=public' \
         --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
-        --p 8000:80 \
+        -p 8000:80 \
         yums/gitlab-ce-pages:1.0.2
   ```
   * Give the URL of your **GCP** server to GitLab users, they will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port.
