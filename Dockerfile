@@ -17,7 +17,7 @@ ENV GITLAB_CE_PAGES_PUBLIC_DIR="${GITLAB_CE_PAGES_HOME}/public" \
 
 WORKDIR ${GITLAB_CE_PAGES_WEBHOOK_DIR}
 
-COPY src/package.json ${GITLAB_CE_PAGES_WEBHOOK_DIR}
+COPY src/package.json ${GITLAB_CE_PAGES_WEBHOOK_DIR}/
 RUN npm install
 
 COPY entrypoint.sh /
