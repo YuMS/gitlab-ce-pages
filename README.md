@@ -1,5 +1,7 @@
 # GitLab CE Pages
 
+[![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages)
+
 This is an unofficial GitLab pages implementation for **GitLab CE**. It will be denoted as **GCP**.
 
 Official **GitLab Pages** is an not provided for GitLab CE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747). Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same thing as this one. *Luckily*, I found it  before my finishing the initial version of this project. So this is it.
