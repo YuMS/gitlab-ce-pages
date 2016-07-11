@@ -23,10 +23,13 @@ The only ~~supported~~ encouraged way to use **GCP** is on [Docker](https://www.
  * Create an peeking account (I'll name it **page**) for **GCP**. This has to be done in order to retrieve artifacts in private projects.
  * Go to **Profile Settings** -> **Account** and copy **Private Token**. This will later be used when running Docker.
  * Get Docker image
+
  ```
   docker pull yums/gitlab-ce-pages:1.0.2
  ```
+ 
  * Run Docker container with
+
  ```
   docker run --name gitlab-ce-pages -d --restart=always \
       --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' \
@@ -36,7 +39,7 @@ The only ~~supported~~ encouraged way to use **GCP** is on [Docker](https://www.
       -p 8000:80 \
       yums/gitlab-ce-pages:1.0.2
  ```
- Here, 
+ 
  * Tell your GitLab users the URL of your **GCP** server. They will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port. It's encouraged to use `ip`+`port` directly because I may later implement pointing different **CNAME**s to different projects.
  * If you want, import some of [these examples](https://gitlab.com/groups/pages) into your own GitLab, as public projects. This will help your users to start building their own pages quickly by just forking them.
 
