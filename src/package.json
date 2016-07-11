@@ -10,9 +10,14 @@
     "request": "^2.72.0",
     "rimraf": "^2.5.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "expect": "^1.20.2",
+    "mocha": "^2.5.3"
+  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha"
   },
   "author": "yumaoshu@gmail.com",
   "license": "MIT"
