@@ -8,7 +8,8 @@
     "express": "^4.13.4",
     "mkdirp": "^0.5.1",
     "request": "^2.72.0",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -17,7 +18,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "mocha"
+    "test": "mocha test/",
+    "system_test": "mocha system_test/"
   },
   "author": "yumaoshu@gmail.com",
   "license": "MIT"

@@ -81,7 +81,11 @@ function update(body, pageDir) {
       extract(artifactName, artifactPath, pageDir);
     });
     request
-      .get(options)
+      .get(options, (error, response, body) => {
+        if (error) {
+          console.error(error);
+        }
+      })
       .pipe(artifactWriteStream);
   });
 }
