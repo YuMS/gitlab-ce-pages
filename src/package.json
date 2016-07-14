@@ -1,7 +1,7 @@
 {
   "name": "gitlab-ce-pages",
-  "version": "1.0.2",
-  "description": "Unofficial GitLab pages for GitLab CE",
+  "version": "1.0.3",
+  "description": "Unofficial GitLab Pages for GitLab CE",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.0",
