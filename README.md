@@ -2,19 +2,19 @@
 
 [![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages)
 
-This is an unofficial GitLab pages implementation for **GitLab CE**. It will be denoted as **GCP**.
+This is an unofficial GitLab Pages implementation for **GitLab CE**, denoted as **GCP**.
 
-Official **GitLab Pages** is only for GiLab EE, as disscussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747).
+Official **GitLab Pages** is only for GiLab EE, as discussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747).
 
 Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same goal as this one. *Luckily*, I found it before my finishing the initial version of this project.
 
 ## What can this project do?
 
-This project is fully compatible with official GitLab Pages, which means you can directly import from [these GitLab Pages examples](https://gitlab.com/groups/pages) and summon **GCP** to handle the rest (if configured correctly of course). If one day, you switched to **GitLab EE** or **GitLab.com**, the immigration would be seamless.
+This project is fully compatible with official GitLab Pages, which means you can directly use [these GitLab Pages examples](https://gitlab.com/groups/pages) and summon **GCP** to handle the rest (if configured correctly of course). If one day, you switched to **GitLab EE** or **GitLab.com**, the immigration would be seamless.
 
 ## Usage
 
-The only ~~supported~~ encouraged way to use **GCP** is on [Docker](https://www.docker.com/).
+The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://www.docker.com/).
 
 #### Prerequisite
  * **[GitLab CI](https://about.gitlab.com/gitlab-ci/)**: build is essential for everything. If you haven't enabled GitLab CI, you can take this chance to start trying it. It's totally awesome. Here's the [doc](http://doc.gitlab.com/ce/ci/).
