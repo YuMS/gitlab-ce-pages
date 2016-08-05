@@ -18,11 +18,13 @@ describe('CNAME tests', () => {
     mkdirp(project1Dir, (err) => {
       if (err) {
         console.log('mkdir', project1Dir, 'failed');
+        done(err);
         return;
       }
       mkdirp(project2Dir, (err) => {
         if (err) {
           console.log('mkdir', project2Dir, 'failed');
+          done(err);
           return;
         }
         fs.writeFileSync(path.join(project1Dir, 'index.html'), 'hello1!');
