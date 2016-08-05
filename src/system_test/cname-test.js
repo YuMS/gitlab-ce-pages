@@ -11,8 +11,6 @@ describe('CNAME tests', () => {
     const port = process.env.GITLAB_CE_PAGES_PORT || '80';
     const publicVolume = process.env.GITLAB_CE_PAGES_PUBLIC_VOLUME;
     const cnameVolume = process.env.GITLAB_CE_PAGES_CNAME_VOLUME;
-    fs.appendFileSync('/etc/hosts', '127.0.0.1 example1.com');
-    fs.appendFileSync('/etc/hosts', '127.0.0.1 example2.com');
     fs.writeFileSync(path.join(publicVolume, 'groupname/project1', 'index.html'), 'hello1!');
     fs.writeFileSync(path.join(publicVolume, 'groupname/project2', 'index.html'), 'hello2!');
     fs.writeFileSync(path.join(cnameVolume, 'cname.txt'), 'example1.com example2.com groupname/project1');
