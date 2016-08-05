@@ -9,11 +9,11 @@ services:
 
 before_install:
   - docker build -t yums/gitlab-ce-pages .
-  - docker run --name gitlab-ce-pages -d --restart=always --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' --env 'GITLAB_URL=http://localhost/' --env 'PROJECT_ROOT=public' --volume /srv/gitlab-ce-pages/public:/home/pages/public/ -p 8000:80 yums/gitlab-ce-pages
+  - docker run --name gitlab-ce-pages -d --restart=always --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' --env 'GITLAB_URL=http://localhost/' --env 'PROJECT_ROOT=public' --volume /srv/gitlab-ce-pages/public:/home/pages/public/ --volume /srv/gitlab-ce-pages/cname/:/home/pages/cname -p 8000:80 yums/gitlab-ce-pages
   - docker ps -a
   - cd src
   - npm install
 
 script:
   - docker exec gitlab-ce-pages /bin/sh -c "PROJECT_ROOT=public GITLAB_CE_PAGES_PUBLIC_DIR=public PAGE_PRIVATE_TOKEN=private_token npm test"
-  - WEBHOOK_URL=http://localhost:8000 npm run system_test
+  - GITLAB_CE_PAGES_PUBLIC_VOLUME=/srv/gitlab-ce-pages/public/ GITLAB_CE_PAGES_CNAME_VOLUME=/srv/gitlab-ce-pages/cname/ GITLAB_CE_PAGES_PORT=8000 WEBHOOK_URL=http://localhost:8000 npm run system_test

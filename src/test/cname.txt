@@ -1,0 +1,2 @@
+example.com groupname/projectname
+example1.com groupname/projectname
