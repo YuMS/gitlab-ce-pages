@@ -47,14 +47,17 @@ describe('CNAME tests', () => {
         });
       }).then(() => {
         console.log('requesting example1.com');
-        request.get({
-          url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
-          headers: {
-            host: 'example1.com'
-          }
-        }, (error, response, body) => {
-          expect(error).toNotExist();
-          expect(body).toEqual('project1');
+        return new Promise((resolve, reject) => {
+          request.get({
+            url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
+            headers: {
+              host: 'example1.com'
+            }
+          }, (error, response, body) => {
+            expect(error).toNotExist();
+            expect(body).toEqual('project1');
+            resolve();
+          });
         });
       }).then(() => {
         console.log('directing example domains to project2');
@@ -70,14 +73,17 @@ describe('CNAME tests', () => {
         });
       }).then(() => {
         console.log('requesting example2.com');
-        request.get({
-          url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
-          headers: {
-            host: 'example2.com'
-          }
-        }, (error, response, body) => {
-          expect(error).toNotExist();
-          expect(body).toEqual('project2');
+        return new Promise((resolve, reject) => {
+          request.get({
+            url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
+            headers: {
+              host: 'example2.com'
+            }
+          }, (error, response, body) => {
+            expect(error).toNotExist();
+            expect(body).toEqual('project2');
+            resolve();
+          });
         });
       }).then(() => {
         console.log('cleaning contents in cname.txt');
@@ -93,15 +99,19 @@ describe('CNAME tests', () => {
         });
       }).then(() => {
         console.log('requesting unassigned example2.com');
-        request.get({
-          url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
-          headers: {
-            host: 'example2.com'
-          }
-        }, (error, response, body) => {
-          expect(error).toNotExist();
-          expect(body).toEqual('Hi!');
+        return new Promise((resolve, reject) => {
+          request.get({
+            url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port),
+            headers: {
+              host: 'example2.com'
+            }
+          }, (error, response, body) => {
+            expect(error).toNotExist();
+            expect(body).toEqual('Hi!');
+            resolve();
+          });
         });
+      }).then(() => {
         resolve();
       }).catch((err) => {
         reject(err);
