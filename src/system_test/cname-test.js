@@ -17,13 +17,19 @@ describe('CNAME tests', () => {
     return new Promise((resolve, reject) => {
       return Promise.resolve().then(() => {
         console.log('mkdir for project1');
-        mkdirp(project1Dir, (err) => {
-          expect(err).toNotExist();
+        return new Promise((resolve, reject) => {
+          mkdirp(project1Dir, (err) => {
+            expect(err).toNotExist();
+            resolve();
+          });
         });
       }).then(() => {
         console.log('mkdir for project2');
-        mkdirp(project2Dir, (err) => {
-          expect(err).toNotExist();
+        return new Promise((resolve, reject) => {
+          mkdirp(project2Dir, (err) => {
+            expect(err).toNotExist();
+            resolve();
+          });
         });
       }).then(() => {
         fs.writeFileSync(path.join(project1Dir, 'index.html'), 'project1');
