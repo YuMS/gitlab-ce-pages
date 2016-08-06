@@ -2,7 +2,7 @@
 echo "cleaning sites config"
 rm /etc/nginx/conf.d/*
 echo "generating sites config for CNAME"
-while read line; do
+while read -r line; do
     echo "handling line: $line"
     conf_name="${line//[^a-z0-9.]/-}.conf"
     server_names=`expr "$line" : '\(.*\)\s\+'`
