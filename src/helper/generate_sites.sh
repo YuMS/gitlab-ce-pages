@@ -5,8 +5,8 @@ echo "generating sites config for CNAME"
 while read -r line; do
     echo "handling line: $line"
     conf_name="${line//[^a-z0-9.]/-}.conf"
-    server_names=`expr "$line" : '\(.*\)\s\+'`
-    project_location=`expr "$line" : '.*\s\+\(\S\+\)\$'`
+    project_location=`expr "$line" : '\(\S\+\).*\$'`
+    server_names=`expr "$line" : '\S\+\s\+\(.*\)\$'`
     echo "generating site config: $conf_name"
     echo "server names(CNAME): $server_names"
     echo "project location: $project_location"
