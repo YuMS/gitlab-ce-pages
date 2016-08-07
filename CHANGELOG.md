@@ -1,5 +1,8 @@
 # Changelog
 
+**1.1.0**
+- add CNAME (customized domain) support
+
 **1.0.3**
 - add docker build test, unit tests and system tests, enable travis ci
 - fix a wrong private token caused crash bug
