@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages)
 
-This is an unofficial GitLab Pages implementation for **GitLab CE**, denoted as **GCP**.
+This is an unofficial **GitLab Pages** implementation for **GitLab CE (GitLab Community Edition)**, denoted as **GCP**.
 
 Official **GitLab Pages** is only for GiLab EE, as discussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747).
 
@@ -10,7 +10,11 @@ Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages)
 
 ## What can this project do?
 
-This project is fully compatible with official GitLab Pages, which means you can directly use [these GitLab Pages examples](https://gitlab.com/groups/pages) and summon **GCP** to handle the rest (if configured correctly of course). If one day, you switched to **GitLab EE** or **GitLab.com**, the immigration would be seamless.
+This project is almost compatible with official **GitLab Pages**, which means you can directly use [these GitLab Pages examples](https://gitlab.com/groups/pages) and summon **GCP** to handle the rest (if configured correctly of course). If one day, you switched to **GitLab EE** or **GitLab.com**, or Pages is included into **GitLab CE**,  the immigration would be seamless.
+
+Currently, following features are supported:
+ * Pages per project with compatible page generation DSL in `.gitlab-ci.yml` (official doc [here](http://docs.gitlab.com/ee/pages/README.html#project-pages))
+ * CNAME support
 
 ## Usage
 
@@ -36,6 +40,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
       --env 'GITLAB_URL=http://gitlab.example.com/' \
       --env 'PROJECT_ROOT=public' \
       --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
+      --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
       -p 8000:80 \
       yums/gitlab-ce-pages:1.0.3
  ```
@@ -48,6 +53,34 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
  * Set **Webhook** in **Project Settings** -> **Webhooks**, tick only **Build event** and fill in **URL** provided by administrator.
  * Write `.gitlab-ci.yml` like demonstrated in [these examples](https://gitlab.com/groups/pages). Or if your administrator has already imported some of them into GitLab, fork one.
  * Wait for build to complete and check your page under `{GITLAB_CE_PAGE_URL}/{WORKSPACE}/{PROJECT_NAME}`.
+
+#### CNAME configuration
+
+CNAME is supported since **GCP 1.1.0**.
+
+Official GitLab Pages service provides a way for users to host their static websites on gitlab.io, also you can point your domain to your \*.gitlab.io using CNAME DNS record. For GCP, things are different: GCP, along with your sites, are hosted on your own server. What GCP needs is actually an **A record** to your server IP in domain DNS records. But since the final purposes of two are similar, both to customize domains. So the name CNAME is used.
+
+With customized domains, you can directly access your projects’ Pages directly under your own domains, without complicated workspace and project name in url. This makes GCP essentially a static site deployer. In fact, you can use GCP to deploy your static site even without owning a running GitLab instance!
+
+Unlike official Pages, we can’t easily set CNAMEs on web UI. GCP uses a configuration file to enable this.
+
+Following are steps to set CNAME:
+ * Map some directory to GCP volume `/home/pages/cname` with an additional option of `docker run`. Like
+
+ ```
+  --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/
+ ```
+
+ * Create a file named `cnames.txt` in mapped directory.
+ * Put your domain names into `cnames.txt` in following format:
+
+ ```
+  workspace_1/project_1 domain1.com domain2.com domain3.com
+  workspace_2/project_2 domain3.com
+ ```
+
+   Each line sets domains for a project. Pointing multiple domains to one project is supported.
+ * Set your domains’ *A record* to GCP server IP and all settled.
 
 ## Environment variables
 * **PAGE_PRIVATE_TOKEN**: private token of peeking account
@@ -71,5 +104,6 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
         - PROJECT_ROOT=public
       volumes:
         - ./public:/home/pages/public
+        - ./cname:/home/pages/cname
       ports:
         - "8000:80"
