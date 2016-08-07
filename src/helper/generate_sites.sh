@@ -1,7 +1,6 @@
 #/bin/bash
 echo "cleaning sites config"
 rm /etc/nginx/conf.d/*
-touch ${GITLAB_CE_PAGES_CNAME_DIR}/cname.txt
 echo "generating sites config for CNAME"
 while read -r line; do
     echo "handling line: $line"
