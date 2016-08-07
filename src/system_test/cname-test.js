@@ -34,7 +34,7 @@ describe('CNAME tests', () => {
       }).then(() => {
         fs.writeFileSync(path.join(project1Dir, 'index.html'), 'project1');
         fs.writeFileSync(path.join(project2Dir, 'index.html'), 'project2');
-        console.log('directing example domains to project1');
+        console.log('pointing example1.com and example2.com to project1');
         // I have no idea why this \n changes things.
         // You can't leave without it or nothing read out from generate_sites.sh
         fs.writeFileSync(cnamePath, 'groupname/project1 example1.com example2.com\n');
@@ -43,7 +43,7 @@ describe('CNAME tests', () => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve();
-          }, 500);
+          }, 1000);
         });
       }).then(() => {
         console.log('requesting example1.com');
@@ -60,7 +60,7 @@ describe('CNAME tests', () => {
           });
         });
       }).then(() => {
-        console.log('directing example domains to project2');
+        console.log('pointing example2.com to project1');
         // I have no idea why this \n changes things.
         // You can't leave without it or nothing read out from generate_sites.sh
         fs.writeFileSync(cnamePath, 'groupname/project2 example2.com\n');
@@ -69,7 +69,7 @@ describe('CNAME tests', () => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve();
-          }, 500);
+          }, 1000);
         });
       }).then(() => {
         console.log('requesting example2.com');
@@ -95,7 +95,7 @@ describe('CNAME tests', () => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve();
-          }, 500);
+          }, 1000);
         });
       }).then(() => {
         console.log('requesting unassigned example2.com');
@@ -117,5 +117,5 @@ describe('CNAME tests', () => {
         reject(err);
       });
     });
-  }).timeout(5000);
+  }).timeout(10000);
 });
