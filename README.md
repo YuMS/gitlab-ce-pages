@@ -1,6 +1,4 @@
-# GitLab CE Pages
-
-[![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages)
+# GitLab CE Pages [![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages)
 
 This is an unofficial **GitLab Pages** implementation for **GitLab CE (GitLab Community Edition)**, denoted as **GCP**.
 
@@ -41,7 +39,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
       --env 'PROJECT_ROOT=public' \
       --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
       --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
-      -p 8000:80 \
+      -p 80:80 \
       yums/gitlab-ce-pages:1.1.0
  ```
  
@@ -106,4 +104,4 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
         - ./public:/home/pages/public
         - ./cname:/home/pages/cname
       ports:
-        - "8000:80"
+        - "80:80"
