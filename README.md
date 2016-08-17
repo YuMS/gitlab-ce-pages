@@ -43,7 +43,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
       yums/gitlab-ce-pages:1.1.0
  ```
  
- * Tell your GitLab users the URL of your **GCP** server. They will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port. It's encouraged to use `ip`+`port` directly because I may later implement pointing different **CNAME**s to different projects.
+ * Tell your GitLab users the URL of your **GCP** server. They will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port.
  * If you want, import some of [these examples](https://gitlab.com/groups/pages) into your own GitLab, as public projects. This will help your users to start building their own pages quickly by just forking them.
 
 #### Enable for project (I expect you, the reader, to retell the following bullet points to your GitLab users, in your own way):
@@ -69,11 +69,11 @@ Following are steps to set CNAME:
   --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/
  ```
 
- * Create a file named `cnames.txt` in mapped directory.
+ * You should find `cnames.txt` in mapped directory.
  * Put your domain names into `cnames.txt` in following format:
 
  ```
-  workspace_1/project_1 domain1.com domain2.com domain3.com
+  workspace_1/project_1 domain1.com project1.domain2.com page.domain3.com
   workspace_2/project_2 domain3.com
  ```
 
