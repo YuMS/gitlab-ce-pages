@@ -1,5 +1,6 @@
 "use strict";
 const fs = require('fs');
+const os = require('os');
 const url = require('url');
 const path = require('path');
 const request = require('request');
@@ -15,8 +16,7 @@ const projectRoot = process.env.PROJECT_ROOT;
 let gitlabUrl = process.env.GITLAB_URL || 'localhost';
 gitlabUrl = gitlabUrl.replace(/\/*$/, '/');
 
-function extract(artifactName, artifactPath, destination) {
-  const tempDestination = destination + Math.random().toString().substr(1);
+function extract(artifactName, artifactPath, tempDestination, destination) {
   exec('unzip ' + artifactPath + ' -d ' + tempDestination, (err, stdout, stderr) => {
     if (err) {
       console.error('unzip', artifactName, 'failed');
@@ -94,8 +94,13 @@ function update(body, pageDir) {
         return;
       }
       console.log(artifactName, 'downloaded');
-      mkdirp(tempPageDir, (err) => {
-        extract(artifactName, artifactPath, pageDir);
+      const tempDestination = path.join(os.tmpdir(), 'temp', Math.random().toString().substr(2));
+      mkdirp(tempDestination, (err) => {
+        if (err) {
+          console.error('mkdirp', tempDestination, 'to destination', destination, 'failed');
+          console.error(err);
+        }
+        extract(artifactName, artifactPath, tempDestination, pageDir);
       });
     });
     request
