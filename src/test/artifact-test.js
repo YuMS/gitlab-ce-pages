@@ -42,6 +42,10 @@ const BuildCompleteJSON = {
      git_ssh_url: 'ssh://git@gitlab.example.com/groupname/plain-html.git',
      visibility_level: 10 } }
 
+const delay = time => () => new Promise((resolve) => {
+  setTimeout(resolve, time);
+})
+
 describe('Artifact tests', () => {
   let sandbox;
   beforeEach(() => sandbox = sinon.sandbox.create());
@@ -60,6 +64,45 @@ describe('Artifact tests', () => {
       });
     }, 1000);
   });
+  it('should renew site content after receiving another build complete notification', () => {
+    const fileReadStream = fs.createReadStream('test/artifacts.zip');
+    sandbox.stub(request, 'get').returns(fileReadStream);
+    deployer.deploy(BuildCompleteJSON);
+    return new Promise((resolve, reject) => {
+      return Promise.resolve()
+      .then(delay(1000))
+      .then(() => {
+        const fileReadStream1 = fs.createReadStream('test/artifacts-index-htm.zip');
+        sandbox.restore();
+        sandbox.stub(request, 'get').returns(fileReadStream1);
+        deployer.deploy(BuildCompleteJSON);
+      })
+      .then(delay(1000))
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          fs.stat('public/groupname/plain-html/index.html', (err, stats) => {
+            if (err) {
+              fs.stat('public/groupname/plain-html/index.htm', (err, stats) => {
+                if (err) {
+                  reject(new Error('index.htm should be there'));
+                } else {
+                  resolve();
+                }
+              });
+            } else {
+              reject(new Error('index.html should have gone'));
+            }
+          });
+        });
+      })
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    })
+  }).timeout(10000);
   it('should not crash when no such a {PROJECT_ROOT} directory', (done) => {
     const fileReadStream = fs.createReadStream('test/artifacts-no-public-directory.zip');
     sandbox.stub(request, 'get').returns(fileReadStream);
