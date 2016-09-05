@@ -15,52 +15,54 @@ const projectRoot = process.env.PROJECT_ROOT;
 let gitlabUrl = process.env.GITLAB_URL || 'localhost';
 gitlabUrl = gitlabUrl.replace(/\/*$/, '/');
 
-function extract(artifactName, artifactPath, tempdestination, destination) {
-  exec('unzip ' + artifactPath + ' -d ' + tempdestination, (err, stdout, stderr) => {
+function extract(artifactName, artifactPath, destination) {
+  const tempDestination = destination + Math.random().toString().substr(1);
+  exec('unzip ' + artifactPath + ' -d ' + tempDestination, (err, stdout, stderr) => {
     if (err) {
       console.error('unzip', artifactName, 'failed');
       console.error(err);
-      rimraf(tempdestination, () => {
-        console.log('tempdestination', tempdestination, 'removed');
+      rimraf(tempDestination, () => {
+        console.log('tempDestination', tempDestination, 'removed');
       });
     } else {
-      console.log('unzipped', artifactName, 'into', tempdestination);
-      if (projectRoot) {
-        console.log('moving files out of', projectRoot);
-        exec('cd ' + tempdestination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
+      console.log('unzipped', artifactName, 'into', tempDestination);
+      console.log('removing artifact', artifactPath);
+      // Artifact is expected to run parallel with moving files down below
+      exec('rm ' + artifactPath,
+        (err, stdout, stderr) => {
+          if (err) {
+            console.error('artifact removal', artifactPath, 'failed');
+            console.error(err);
+          } else {
+            console.log('artifact removal', artifactPath, 'succeed');
+          }
+        }
+      );
+      rimraf(destination, () => {
+        exec('mv ' + tempDestination + ' ' + destination,
           (err, stdout, stderr) => {
             if (err) {
-              console.error('files moving out of', projectRoot, 'failed');
+              console.error('Moving from tempDestination', tempDestination, 'to destination', destination, 'failed');
               console.error(err);
             } else {
-              console.log('files moving out of', projectRoot, 'succeed');
-            }
-          }
-        );
-      }
-      rimraf(destination, () => {
-        exec('mv ' + tempdestination + ' ' + destination,
-          (err, stdout, stderr) => {
-            if (err) {
-              console.error('Moving tempdestination', tempdestination, 'failed');
-              console.error(err);
+              if (projectRoot) {
+                console.log('moving files out of', projectRoot);
+                exec('cd ' + destination + ' && mv ' + projectRoot + ' PROJECT_ROOT && cd PROJECT_ROOT && mv ./* .. && cd .. && rm -rf PROJECT_ROOT',
+                  (err, stdout, stderr) => {
+                    if (err) {
+                      console.error('files moving out of', projectRoot, 'failed');
+                      console.error(err);
+                    } else {
+                      console.log('files moving out of', projectRoot, 'succeed');
+                    }
+                  }
+                );
+              }
             }
           }
         );
       });
     }
-    console.log('removing artifact', artifactPath);
-    // Artifact is expected to run parallel with moving files down below
-    exec('rm ' + artifactPath,
-      (err, stdout, stderr) => {
-        if (err) {
-          console.error('artifact removal', artifactPath, 'failed');
-          console.error(err);
-        } else {
-          console.log('artifact removal', artifactPath, 'succeed');
-        }
-      }
-    );
   });
 }
 
@@ -92,9 +94,8 @@ function update(body, pageDir) {
         return;
       }
       console.log(artifactName, 'downloaded');
-      const tempPageDir = pageDir + "."  + bid;
       mkdirp(tempPageDir, (err) => {
-        extract(artifactName, artifactPath, tempPageDir, pageDir);
+        extract(artifactName, artifactPath, pageDir);
       });
     });
     request
