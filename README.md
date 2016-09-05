@@ -4,7 +4,7 @@ This is an unofficial **GitLab Pages** implementation for **GitLab CE (GitLab Co
 
 Official **GitLab Pages** is only for GiLab EE, as discussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747).
 
-Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same goal as this one. *Luckily*, I found it before my finishing the initial version of this project.
+Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same goal as this one. *Luckily*, I found it after my finishing the initial version of this project.
 
 ## What can this project do?
 
