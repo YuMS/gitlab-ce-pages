@@ -119,6 +119,10 @@ module.exports = {
     const homepageSplit = homepage.split('/');
     const pnameSplit = homepageSplit.splice(homepageSplit.length - 2, 2);
     const pageDir = path.join(publicDir, ...pnameSplit);
-    update(body, pageDir);
+    if (path.relative(publicDir, pageDir).startsWith('..')) {
+      console.error('detected pageDir going beyond of publicDir, halting');
+    } else {
+      update(body, pageDir);
+    }
   }
 };

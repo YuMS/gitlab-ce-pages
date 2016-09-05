@@ -137,4 +137,41 @@ describe('Artifact tests', () => {
       });
     }, 1000);
   });
+  it('should not make damage when receives groupname=.. and projectname=.. even if artifacts.zip is received', () => {
+    const fileReadStream = fs.createReadStream('test/artifacts.zip');
+    sandbox.stub(request, 'get').returns(fileReadStream);
+    deployer.deploy(Object.assign({}, BuildCompleteJSON, {
+      repository: Object.assign({}, BuildCompleteJSON.repository, {
+        homepage: 'https://gitlab.example.com/../..'
+      })
+    }));
+    return new Promise((resolve, reject) => {
+      return Promise.resolve()
+      .then(delay(1000))
+      .then(() => {
+        const fileReadStream1 = fs.createReadStream('test/artifacts.zip');
+        sandbox.restore();
+        sandbox.stub(request, 'get').returns(fileReadStream1);
+        deployer.deploy(BuildCompleteJSON);
+      })
+      .then(delay(1000))
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          fs.stat('public/groupname/plain-html/index.html', (err, stats) => {
+            if (err) {
+              reject(new Error('index.html should be there'));
+            } else {
+              resolve();
+            }
+          });
+        });
+      })
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    })
+  }).timeout(10000);
 });
