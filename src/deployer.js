@@ -66,6 +66,41 @@ function extract(artifactName, artifactPath, tempDestination, destination) {
   });
 }
 
+function check_latest(body, callback) {
+  if (!privateToken) {
+    console.log('missing private token');
+    return callback(new Error('missing private token'));
+  }
+  const pid = body.project_id;
+  const bid = body.build_id;
+  const options = {
+    url: url.resolve(gitlabUrl, 'api/v3/projects/' + pid + '/builds' + '?scope=success'),
+    headers: {
+      'PRIVATE-TOKEN': privateToken
+    }
+  };
+  console.log('check_latest options', options);
+  request
+    .get(options, (error, response, body) => {
+      if (error) {
+        console.error('failed to retrieve build list');
+        return callback(error);
+      }
+      let builds = [];
+      try {
+        builds = JSON.parse(body);
+      } catch(e) {
+        console.error('failed to parse build list');
+        return callback(e);
+      }
+      if (builds.length && builds[0].id === bid) {
+        return callback();
+      } else {
+        return callback(new Error('Not the latest build'));
+      }
+      });
+}
+
 function update(body, pageDir) {
   if (!privateToken) {
     console.log('missing private token');
@@ -83,7 +118,7 @@ function update(body, pageDir) {
       headers: {
         'PRIVATE-TOKEN': privateToken
       }
-    }
+    };
     console.log('options', options);
     const artifactName = bid + '.zip';
     const artifactPath = path.join(publicDir, artifactName);
@@ -122,7 +157,14 @@ module.exports = {
     if (path.relative(publicDir, pageDir).startsWith('..')) {
       console.error('detected pageDir going beyond of publicDir, halting');
     } else {
-      update(body, pageDir);
+      check_latest(body, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log('latest build confirmed');
+        update(body, pageDir);
+      });
     }
   }
 };
