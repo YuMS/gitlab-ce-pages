@@ -27,7 +27,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
  * Get Docker image
 
  ```
-  docker pull yums/gitlab-ce-pages:1.1.0
+  docker pull yums/gitlab-ce-pages:1.2.0
  ```
  
  * Run Docker container with
@@ -40,7 +40,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
       --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
       --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
       -p 80:80 \
-      yums/gitlab-ce-pages:1.1.0
+      yums/gitlab-ce-pages:1.2.0
  ```
  
  * Tell your GitLab users the URL of your **GCP** server. They will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port.
@@ -95,7 +95,7 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
 
     gitlab-ce-pages:
       restart: always
-      image: yums/gitlab-ce-pages:1.1.0
+      image: yums/gitlab-ce-pages:1.2.0
       environment:
         - PAGE_PRIVATE_TOKEN=private_token_of_peeking_account
         - GITLAB_URL=http://gitlab.example.com/
