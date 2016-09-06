@@ -1,8 +1,9 @@
 {
   "name": "gitlab-ce-pages",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Unofficial GitLab Pages for GitLab CE",
   "main": "index.js",
+  "repository": "YuMS/gitlab-ce-pages",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",

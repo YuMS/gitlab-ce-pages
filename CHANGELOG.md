@@ -1,5 +1,8 @@
 # Changelog
 
+**1.2.0**
+- prevent non-GitLab request from destroying project pages and GCP service
+
 **1.1.0**
 - add CNAME (customized domain) support
 
