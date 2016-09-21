@@ -17,7 +17,7 @@ let gitlabUrl = process.env.GITLAB_URL || 'localhost';
 gitlabUrl = gitlabUrl.replace(/\/*$/, '/');
 
 function extract(artifactName, artifactPath, tempDestination, destination) {
-  exec('unzip ' + artifactPath + ' -d ' + tempDestination, (err, stdout, stderr) => {
+  exec(`unzip ${artifactPath} -d ${tempDestination} >> /dev/null`, (err, stdout, stderr) => {
     if (err) {
       console.error('unzip', artifactName, 'failed');
       console.error(err);
