@@ -1,7 +1,10 @@
 # Changelog
 
+**1.2.1**
+- solve child process’ stdout buffer overflow problem #8
+
 **1.2.0**
-- prevent non-GitLab request from destroying project pages and GCP service
+- prevent non-GitLab request from destroying project pages and GCP service #5
 
 **1.1.0**
 - add CNAME (customized domain) support
