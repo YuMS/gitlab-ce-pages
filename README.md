@@ -80,6 +80,34 @@ Following are steps to set CNAME:
    Each line sets domains for a project. Pointing multiple domains to one project is supported.
  * Set your domains’ *A record* to GCP server IP and all settled.
 
+## Upgrading
+You can easily upgrade your GCP in following steps:
+
+ * pull latest image
+
+ ```
+  docker pull yums/gitlab-ce-pages:1.2.1
+ ```
+ 
+ * remove running image
+
+ ```
+  docker rm -f gitlab-ce-pages
+ ```
+ 
+ * start service with new image
+ 
+ ```
+  docker run --name gitlab-ce-pages -d --restart=always \
+      --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' \
+      --env 'GITLAB_URL=http://gitlab.example.com/' \
+      --env 'PROJECT_ROOT=public' \
+      --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
+      --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
+      -p 80:80 \
+      yums/gitlab-ce-pages:1.2.1
+ ```
+
 ## Environment variables
 * **PAGE_PRIVATE_TOKEN**: private token of peeking account
 * **GITLAB_URL**: GitLab CE URL
