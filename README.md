@@ -22,7 +22,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
  * **[GitLab CI](https://about.gitlab.com/gitlab-ci/)**: build is essential for everything. If you haven't enabled GitLab CI, you can take this chance to start trying it. It's totally awesome. Here's the [doc](http://doc.gitlab.com/ce/ci/).
 
 #### Further deploying steps
- * Create an peeking account (I'll name it **page**) for **GCP**. This has to be done in order to retrieve artifacts in private projects.
+ * Create an peeking account (I'll name it **page**) for **GCP**. This has to be done in order to retrieve artifacts in private projects. Actually, you can also use an privileged (admin) account to peek at those private projects.
  * Go to **Profile Settings** -> **Account** and copy **Private Token**. This will later be used when running Docker.
  * Get Docker image
 
@@ -47,7 +47,7 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
  * If you want, import some of [these examples](https://gitlab.com/groups/pages) into your own GitLab, as public projects. This will help your users to start building their own pages quickly by just forking them.
 
 #### Enable for project (I expect you, the reader, to retell the following bullet points to your GitLab users, in your own way):
- * Add peeking (I named it **page**, remember?) account as your project members and grant **Reporter** privilege.
+ * Add peeking (I named it **page**, remember?) account as your project members and grant **Reporter** privilege. If an privileged account is used as peeking account, this step is optional.
  * Set **Webhook** in **Project Settings** -> **Webhooks**, tick only **Build event** and fill in **URL** provided by administrator.
  * Write `.gitlab-ci.yml` like demonstrated in [these examples](https://gitlab.com/groups/pages). Or if your administrator has already imported some of them into GitLab, fork one.
  * Wait for build to complete and check your page under `{GITLAB_CE_PAGE_URL}/{WORKSPACE}/{PROJECT_NAME}`.
