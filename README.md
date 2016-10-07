@@ -19,6 +19,8 @@ Currently, following features are supported:
 The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://www.docker.com/).
 
 #### Prerequisite
+ * **[GitLab CE 8.4+](https://gitlab.com/)**: GCP cooperates with GitLab rather than `^((?!GitLab).)*$` nor `GitLab (8\.[0-3]\..*|[0-7]\..*|[0-7]|8\.3)`
+
  * **[GitLab CI](https://about.gitlab.com/gitlab-ci/)**: build is essential for everything. If you haven't enabled GitLab CI, you can take this chance to start trying it. It's totally awesome. Here's the [doc](http://doc.gitlab.com/ce/ci/).
 
 #### Further deploying steps
