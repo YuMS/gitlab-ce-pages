@@ -82,6 +82,34 @@ Following are steps to set CNAME:
    Each line sets domains for a project. Pointing multiple domains to one project is supported.
  * Set your domains’ *A record* to GCP server IP and all settled.
 
+#### Wildcard CNAME configuration
+
+Wildcard CNAME is supported since **GCP 1.3.0**.
+
+Wildcard CNAME is the follow-up to [CNAME configuration](#cname-configuration), which enables GCP to automatically apply some patterns for page routing.
+
+Here's some recipe `cnames.txt`s to use wildcard CNAME:
+
+ * visit generated site of any project named `homepage` directly using workspace name as subdomain name
+ 
+ ```
+   $1/homepage ~^(.*)\.example\.com$
+ ```
+ 
+ `foo.example.com` will point to `foo/homepage`
+
+ * visit generated site of any project named `{workspace_name}.example.com` directly using workspace name as subdomain name
+ 
+ ```
+   $1/$1.example.com ~^(.*)\.example\.com$
+ ```
+ 
+ `foo.example.com` will point to `foo/foo.example.com`
+
+You can find your best fit by combination of these.
+
+Note that you need to set *A record* to GCP server IP for all domains/subdomains you want to use. [Here's an example](https://www.godaddy.com/help/setting-up-wildcard-dns-3301) from GoDaddy about how to set wildcard DNS record.
+
 ## Upgrading
 You can easily upgrade your GCP in following steps:
 
