@@ -22,15 +22,21 @@ COPY src/package.json ${GITLAB_CE_PAGES_WEBHOOK_DIR}/
 RUN npm install
 RUN npm install -g nodemon
 
+ENV TINI_VERSION v0.10.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
+
 COPY entrypoint.sh /
 COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN rm -f /etc/nginx/conf.d/*
+RUN chown -R nginx: /var/log/nginx
 
 COPY src/ ${GITLAB_CE_PAGES_WEBHOOK_DIR}/
 
 EXPOSE 80/tcp
+EXPOSE 53/udp
 
 VOLUME ["${GITLAB_CE_PAGES_PUBLIC_DIR}"]
 VOLUME ["${GITLAB_CE_PAGES_CNAME_DIR}"]
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/bin/npm", "start"]
+CMD ["/entrypoint.sh", "/usr/bin/npm", "start"]
