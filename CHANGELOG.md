@@ -1,5 +1,8 @@
 # Changelog
 
+**1.3.0**
+- add wildcard CNAME support #9 #12
+
 **1.2.1**
 - solve child process’ stdout buffer overflow problem #8
 
