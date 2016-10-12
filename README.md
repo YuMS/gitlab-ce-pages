@@ -29,9 +29,9 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
  * Get Docker image
 
  ```
-  docker pull yums/gitlab-ce-pages:1.2.1
+  docker pull yums/gitlab-ce-pages:1.3.0
  ```
- 
+
  * Run Docker container with
 
  ```
@@ -42,9 +42,9 @@ The only ~~supported~~ encouraged way to run **GCP** is with [Docker](https://ww
       --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
       --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
       -p 80:80 \
-      yums/gitlab-ce-pages:1.2.1
+      yums/gitlab-ce-pages:1.3.0
  ```
- 
+
  * Tell your GitLab users the URL of your **GCP** server. They will use it as **webhook URL**. Note that this URL is the one which can actually access your running Docker instance's exposed port.
  * If you want, import some of [these examples](https://gitlab.com/groups/pages) into your own GitLab, as public projects. This will help your users to start building their own pages quickly by just forking them.
 
@@ -91,19 +91,19 @@ Wildcard CNAME is the follow-up to [CNAME configuration](#cname-configuration), 
 Here's some recipe `cnames.txt`s to use wildcard CNAME:
 
  * visit generated site of any project named `homepage` directly using workspace name as subdomain name
- 
+
  ```
    $1/homepage ~^(.*)\.example\.com$
  ```
- 
+
  `foo.example.com` will point to `foo/homepage`
 
  * visit generated site of any project named `{workspace_name}.example.com` directly using workspace name as subdomain name
- 
+
  ```
    $1/$1.example.com ~^(.*)\.example\.com$
  ```
- 
+
  `foo.example.com` will point to `foo/foo.example.com`
 
 You can find your best fit by combination of these.
@@ -116,17 +116,17 @@ You can easily upgrade your GCP in following steps:
  * pull latest image
 
  ```
-  docker pull yums/gitlab-ce-pages:1.2.1
+  docker pull yums/gitlab-ce-pages:1.3.0
  ```
- 
+
  * remove running image
 
  ```
   docker rm -f gitlab-ce-pages
  ```
- 
+
  * start service with new image
- 
+
  ```
   docker run --name gitlab-ce-pages -d --restart=always \
       --env 'PAGE_PRIVATE_TOKEN=private_token_of_peeking_account' \
@@ -135,7 +135,7 @@ You can easily upgrade your GCP in following steps:
       --volume /srv/gitlab-ce-pages/public:/home/pages/public/ \
       --volume /srv/gitlab-ce-pages/cname:/home/pages/cname/ \
       -p 80:80 \
-      yums/gitlab-ce-pages:1.2.1
+      yums/gitlab-ce-pages:1.3.0
  ```
 
 ## Environment variables
@@ -153,7 +153,7 @@ This is a sample `docker-compose.yml` file for you if you want to use docker-com
 
     gitlab-ce-pages:
       restart: always
-      image: yums/gitlab-ce-pages:1.2.1
+      image: yums/gitlab-ce-pages:1.3.0
       environment:
         - PAGE_PRIVATE_TOKEN=private_token_of_peeking_account
         - GITLAB_URL=http://gitlab.example.com/
