@@ -30,7 +30,6 @@ ENTRYPOINT ["/tini", "--"]
 COPY entrypoint.sh /
 COPY config/nginx.conf /etc/nginx/nginx.conf
 RUN rm -f /etc/nginx/conf.d/*
-RUN chown -R nginx: /var/log/nginx
 
 COPY src/ ${GITLAB_CE_PAGES_WEBHOOK_DIR}/
 
