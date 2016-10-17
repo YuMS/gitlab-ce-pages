@@ -1,5 +1,10 @@
 # Changelog
 
+**1.3.1**
+- replace alias in NGINX config with root as mentioned [here](http://nginx.org/en/docs/http/ngx_http_core_module.html#alias)
+- remove unwanted trailing slash
+- use tini to prevent zombies caused by nodemon #13
+
 **1.3.0**
 - add wildcard CNAME support #9 #12
 
