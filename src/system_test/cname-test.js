@@ -65,6 +65,17 @@ describe('CNAME tests', () => {
           }, 1000);
         });
       }).then(() => {
+        console.log('requesting localhost/groupname/project1');
+        return new Promise((resolve, reject) => {
+          request.get({
+            url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port) + '/groupname/project1/',
+          }, (error, response, body) => {
+            expect(error).toNotExist();
+            expect(body).toEqual('project1');
+            resolve();
+          });
+        });
+      }).then(() => {
         console.log('requesting example1.com');
         return new Promise((resolve, reject) => {
           request.get({
