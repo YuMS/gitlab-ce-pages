@@ -9,6 +9,7 @@ describe('CNAME tests', () => {
   it('should support CNAME customization', () => {
     // TODO: clean file changes
     const port = process.env.GITLAB_CE_PAGES_PORT || '80';
+    const webhookUrl = process.env.WEBHOOK_URL || `http://127.0.0.1:${port}/`;
     const publicVolume = process.env.GITLAB_CE_PAGES_PUBLIC_VOLUME;
     const cnameVolume = process.env.GITLAB_CE_PAGES_CNAME_VOLUME;
     const project1Dir = path.join(publicVolume, 'groupname/project1');
@@ -65,10 +66,10 @@ describe('CNAME tests', () => {
           }, 1000);
         });
       }).then(() => {
-        console.log('requesting localhost/groupname/project1');
+        console.log(`requesting ${webhookUrl}groupname/project1`);
         return new Promise((resolve, reject) => {
           request.get({
-            url: 'http://127.0.0.1' + (port == '80' ? '' : ':' + port) + '/groupname/project1/',
+            url: `${webhookUrl}groupname/project1/`,
           }, (error, response, body) => {
             expect(error).toNotExist();
             expect(body).toEqual('project1');
@@ -200,7 +201,7 @@ describe('CNAME tests', () => {
             }
           }, (error, response, body) => {
             expect(error).toNotExist();
-            expect(body).toEqual('Hi!');
+            expect(body).toNotEqual('project2');
             resolve();
           });
         });
