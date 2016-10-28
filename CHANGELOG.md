@@ -1,6 +1,9 @@
 # Changelog
 
-**1.3.2**
+**1.3.3**
+- fix severe bug #17 introduced in 1.3.2, add relative path related tests
+
+**1.3.2**(introduced severe bug #17, don’t use)
 - fix severe bug #16 introduced in 1.3.1, add related tests
 
 **1.3.1**(introduced severe bug #16, don’t use)
