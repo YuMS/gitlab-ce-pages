@@ -25,7 +25,7 @@ before_install:
 script:
   - docker logs -f gitlab-ce-pages &
   - docker exec gitlab-ce-pages /bin/sh -c "PROJECT_ROOT=public GITLAB_CE_PAGES_PUBLIC_DIR=public PAGE_PRIVATE_TOKEN=private_token npm test"
-  - GITLAB_CE_PAGES_PUBLIC_VOLUME=/tmp/gitlab-ce-pages/public/ GITLAB_CE_PAGES_CNAME_VOLUME=/tmp/gitlab-ce-pages/cname/ GITLAB_CE_PAGES_PORT=8000 WEBHOOK_URL=http://localhost:8000/ npm run system_test
+  - GITLAB_CE_PAGES_PUBLIC_VOLUME=/tmp/gitlab-ce-pages/public/ GITLAB_CE_PAGES_CNAME_VOLUME=/tmp/gitlab-ce-pages/cname/ GITLAB_CE_PAGES_PORT=8000 WEBHOOK_URL=http://localhost:8000 npm run system_test
   - kill %1
   - docker logs -f gitlab-ce-pages-relative-url &
-  - GITLAB_CE_PAGES_PUBLIC_VOLUME=/tmp/gitlab-ce-pages-relative-url/public/ GITLAB_CE_PAGES_CNAME_VOLUME=/tmp/gitlab-ce-pages-relative-url/cname/ GITLAB_CE_PAGES_PORT=8001 WEBHOOK_URL=http://localhost:8001/pages/ npm run system_test
+  - GITLAB_CE_PAGES_PUBLIC_VOLUME=/tmp/gitlab-ce-pages-relative-url/public/ GITLAB_CE_PAGES_CNAME_VOLUME=/tmp/gitlab-ce-pages-relative-url/cname/ GITLAB_CE_PAGES_PORT=8001 WEBHOOK_URL=http://localhost:8001/pages npm run system_test
