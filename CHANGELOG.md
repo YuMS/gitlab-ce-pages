@@ -1,6 +1,9 @@
 # Changelog
 
-**1.3.3**
+**1.3.4**
+- revert changes except tests in 1.3.1-1.3.3 to make relative path behavior consistent
+
+**1.3.3**(not consistent with 1.3.0-, don’t use)
 - fix severe bug #17 introduced in 1.3.2, add relative path related tests
 
 **1.3.2**(introduced severe bug #17, don’t use)
