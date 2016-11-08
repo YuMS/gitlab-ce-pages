@@ -1,10 +1,10 @@
-# GitLab CE Pages [![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages) [![GitHub tag](https://img.shields.io/github/tag/yums/gitlab-ce-pages.svg?maxAge=2592000)]()
+# GitLab CE Pages [![Build Status](https://travis-ci.org/YuMS/gitlab-ce-pages.svg?branch=master)](https://travis-ci.org/YuMS/gitlab-ce-pages) [![GitHub tag](https://img.shields.io/github/tag/yums/gitlab-ce-pages.svg?maxAge=2592000)]() [![Docker Pulls](https://img.shields.io/docker/pulls/yums/gitlab-ce-pages.svg)]()
 
 This is an unofficial **GitLab Pages** implementation for **GitLab CE (GitLab Community Edition)**, denoted as **GCP**.
 
 Official **GitLab Pages** is only for GiLab EE, as discussed [here](https://gitlab.com/gitlab-org/gitlab-ce/issues/3085) and [here](https://news.ycombinator.com/item?id=10923747).
 
-Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same goal as this one. *Luckily*, I found it after my finishing the initial version of this project.
+Actually, there's already [a project](https://github.com/Glavin001/GitLab-Pages) aiming at the same goal as this one. *Luckily*, I found it after my finishing the initial version of this project. The philosophy behind these two projects are different: mine provides a close imitation of official GitLab Pages while the other embeds Jekyll which makes it more like GitHub Pages.
 
 ## What can this project do?
 
