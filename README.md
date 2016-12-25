@@ -2,14 +2,14 @@
 
 ## the Largest Milestone w/o Feature Update - the GRAVESTONE
 
-Finally, they brought Pages feature to CE!([link](https://about.gitlab.com/2016/12/24/were-bringing-gitlab-pages-to-community-edition/))
+Finally, they guys from GitLab brought Pages feature to CE!([link](https://about.gitlab.com/2016/12/24/were-bringing-gitlab-pages-to-community-edition/))
 :smile::joy::no_mouth::smile::joy::no_mouth::smile::joy::no_mouth:
 
 So there's no meaning to continue with this project(What? You want me to fight with them??)
 
-Thank you all for your cutting edge sights that made you require this feature that eventually supported this project. Special thanks to you guys who reported back to this one and some who even helped building it.
+Thank you all for your cutting edge sights that made you require this feature that eventually lead you to support this project. Special thanks to you guys who reported back to this one and some who even helped building it.
 
-As I said, this project is **almost compatible**. I *guess* what you need to do after updated to Pages-feature-included version of GitLab are:
+As I said, this project is **almost compatible** with Pages in EE. I *guess* what you need to do after updated to Pages-feature-included version of GitLab are:
  * Leave `.gitlab-ci.yml` as is
  * Shut down GCP service
  * Enable Pages feature in corresponding projects
