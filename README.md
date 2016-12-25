@@ -9,7 +9,7 @@ So there's no meaning to continue with this project(What? You want me to fight w
 
 Thank you all for your cutting edge sights that made you require this feature that eventually lead you to support this project. Special thanks to you guys who reported back to this one and some who even helped building it.
 
-As I said, this project is **almost compatible** with Pages in EE. I *guess* what you need to do after updated to Pages-feature-included version of GitLab are:
+As I said, this project is **almost compatible** with Pages in EE. So for supporters of GCP, I *guess* what you need to do after updated to Pages-feature-included version of GitLab are:
  * Leave `.gitlab-ci.yml` as is
  * Shut down GCP service
  * Enable Pages feature in corresponding projects
